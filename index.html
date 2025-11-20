@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/icone.png" />
+  <title>My To-Do List</title>
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="index">
+  <header class="app-header">
+    <h1>My To-Do List</h1>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="notes.html">Notes</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <form class="header-search" id="site-search" role="search">
+      <input type="search" id="search-input" placeholder="Search tasks..." />
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main class="app-main">
+    <section class="add-task card" aria-labelledby="add-task-title">
+      <h2 id="add-task-title" class="section-title">Add New Task</h2>
+      <form id="task-form" autocomplete="off">
+        <div class="form-row">
+          <label for="task-title">Title</label>
+          <input id="task-title" name="title" type="text" placeholder="e.g. Read a book" required />
+        </div>
+
+        <div class="form-row">
+          <label for="task-important">Important</label>
+          <div>
+            <input id="task-important" name="important" type="checkbox" />
+            <label for="task-important">Mark as important</label>
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="task-duration">Duration (min)</label>
+            <input id="task-duration" name="duration" type="number" min="1" step="1" placeholder="30" />
+          </div>
+          <div>
+            <label for="task-date">Date</label>
+            <input id="task-date" name="date" type="date" />
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="task-start">Start Date</label>
+            <input id="task-start" name="startDate" type="date" />
+          </div>
+          <div>
+            <label for="task-end">End Date</label>
+            <input id="task-end" name="endDate" type="date" />
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="task-repeat">Repeat</label>
+            <select id="task-repeat" name="repeat">
+              <option value="none">None</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label for="task-occurrences">Occurrences</label>
+            <input id="task-occurrences" name="occurrences" type="number" min="1" step="1" placeholder="e.g. 5" />
+          </div>
+        </div>
+
+        <div class="form-row" id="weekly-days-wrap" hidden>
+          <label>Weekly Days</label>
+          <div class="weekdays">
+            <label><input type="checkbox" class="weekday" value="1" /> Mon</label>
+            <label><input type="checkbox" class="weekday" value="2" /> Tue</label>
+            <label><input type="checkbox" class="weekday" value="3" /> Wed</label>
+            <label><input type="checkbox" class="weekday" value="4" /> Thu</label>
+            <label><input type="checkbox" class="weekday" value="5" /> Fri</label>
+            <label><input type="checkbox" class="weekday" value="6" /> Sat</label>
+            <label><input type="checkbox" class="weekday" value="0" /> Sun</label>
+          </div>
+        </div>
+
+        <div class="form-row" id="monthly-days-wrap" hidden>
+          <label>Monthly Days</label>
+          <div id="month-grid" class="month-grid" aria-label="Select days of month"></div>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="task-icon">Icon</label>
+            <select id="task-icon" name="icon" aria-label="Task icon">
+              <option value="📝">📝 - Note</option>
+              <option value="✅">✅ - Task</option>
+              <option value="📚">📚 - Study</option>
+              <option value="💻">💻 - Work</option>
+              <option value="🧹">🧹 - Chores</option>
+              <option value="🛒">🛒 - Shopping</option>
+              <option value="🏃">🏃 - Exercise</option>
+              <option value="🍳">🍳 - Cooking</option>
+              <option value="📧">📧 - Email</option>
+              <option value="🧠">🧠 - Idea</option>
+            </select>
+          </div>
+          <div class="align-end">
+            <button type="submit" class="btn btn-add" id="add-btn">Add Task</button>
+          </div>
+        </div>
+        <p class="error-msg" id="form-error" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="task-list" aria-labelledby="tasks-title">
+      <h2 id="tasks-title" class="section-title">All Tasks</h2>
+      <div id="tasks-container" class="tasks-container" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <template id="task-item-template">
+    <div class="task-item" data-id="">
+      <div class="left-accent"></div>
+      <div class="task-content">
+        <div class="task-main">
+          <span class="task-icon" role="img" aria-label="task icon">📝</span>
+          <span class="task-star" aria-hidden="true"></span>
+          <span class="task-title">Title</span>
+        </div>
+        <div class="task-meta">
+          <span class="task-duration"></span>
+          <span class="task-date"></span>
+        </div>
+        <div class="task-badges">
+          <span class="task-range"></span>
+          <span class="task-repeat"></span>
+        </div>
+        <div class="task-complete" aria-live="polite" hidden>
+          <span class="complete-label">Did you complete the task?</span>
+          <select class="complete-select" aria-label="Completion time options"></select>
+          <label class="complete-check-wrap" hidden>
+            <input type="checkbox" class="complete-check" />
+            <span>Mark as completed</span>
+          </label>
+        </div>
+      </div>
+      <div class="task-actions">
+        <button class="btn-edit" aria-label="Edit task">✎</button>
+        <button class="btn-delete" aria-label="Delete task">✕</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="js/storage.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

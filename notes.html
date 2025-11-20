@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/icone.png" />
+  <title>Notes - My To-Do List</title>
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="notes" class="notes-page">
+  <header class="app-header">
+    <h1>My To-Do List</h1>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="notes.html">Notes</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <form class="header-search" id="site-search" role="search">
+      <input type="search" id="search-input" placeholder="Search tasks..." />
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main class="app-main">
+    <section class="notes card" aria-labelledby="notes-title">
+      <h2 id="notes-title" class="section-title">Notes</h2>
+      <div class="notes-toolbar">
+        <label for="notes-sort">Sort by</label>
+        <select id="notes-sort">
+          <option value="last">Last edited</option>
+          <option value="title">Title (A→Z)</option>
+        </select>
+      </div>
+      <form id="note-form" class="note-form" autocomplete="off">
+        <input type="hidden" id="note-id" />
+        <input type="text" id="note-title" placeholder="Title" />
+        <textarea id="note-text" placeholder="Write a note..."></textarea>
+        <div class="note-actions">
+          <button type="submit" class="btn">Save</button>
+          <button type="button" id="note-cancel" class="btn" style="background: var(--warm-brown)">Cancel</button>
+        </div>
+      </form>
+      <div id="notes-list" class="notes-list"></div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
