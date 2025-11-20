@@ -1,0 +1,2 @@
+@media (max-width:900px){.app-main{grid-template-columns:1fr}.notes{order:3}.task-list{order:2}.add-task{order:1}.task-icon{font-size:1.1rem}.task-title{font-size:1rem}}
+@media (max-width:520px){.filters{flex-direction:column;align-items:stretch}.btn{width:100%}}

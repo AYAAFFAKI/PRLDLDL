@@ -1,0 +1,56 @@
+.app-main{max-width:1280px;margin:16px auto 48px;padding:0 16px;display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+#task-form .form-row{display:grid;gap:8px;margin-bottom:8px}#task-form .form-row.two-col{grid-template-columns:1fr 1fr}#task-form label{font-size:.95rem;color:#5a4b3c}
+#task-form input[type=text],#task-form input[type=number],#task-form input[type=date],#task-form select,#notes-area{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.05);border-radius:10px;background:var(--white);outline:none;transition:box-shadow 200ms ease,border-color 200ms ease}
+#task-form input:focus,#task-form select:focus,#notes-area:focus{border-color:var(--warm-brown);box-shadow:0 0 0 3px rgba(193,140,84,.25)}
+.align-end{display:flex;align-items:end}
+.btn-add{width:100%}
+.notes .section-title{margin-bottom:8px}
+#notes-area{min-height:200px;resize:vertical}
+.task-list{grid-column:1 / -1}
+.filters{display:flex;gap:10px;align-items:end;margin-bottom:12px}
+.filters .field{display:flex;flex-direction:column;gap:6px}
+.task-star{color:var(--warm-brown);font-weight:700;margin-left:2px;margin-right:2px}
+.task-owner{color:#7a7a7a;font-size:.9rem}
+
+/* Form error message */
+.error-msg{color:#B00020;font-weight:600;margin:6px 0 0 0;letter-spacing:.2px;display:flex;align-items:center;gap:6px}
+.error-msg:empty{display:none}
+.error-msg:not(:empty)::before{content:"‼️"}
+
+/* Task actions */
+.task-actions{display:flex;gap:8px;margin-right:10px}
+.btn-edit{width:36px;height:36px;display:grid;place-items:center;border:none;border-radius:10px;background:#f3f3f3;cursor:pointer;transition:background 160ms ease,transform 120ms ease}
+.btn-edit:hover{background:#ececec}
+.btn-edit:active{transform:translateY(1px)}
+
+/* Weekly and Monthly pickers */
+.weekdays{display:flex;flex-wrap:wrap;gap:10px}
+.month-grid{display:grid;grid-template-columns:repeat(7,minmax(40px,1fr));gap:6px}
+.month-grid .day{user-select:none;border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:7px;text-align:center;background:var(--white);cursor:pointer;transition:background 140ms ease, border-color 140ms ease}
+.month-grid .day:hover{background:#fafafa}
+.month-grid .day.selected{background:var(--warm-brown);color:#fff;border-color:transparent}
+
+/* About page specific layout tweaks (width and internal layout only) */
+.about-wide{width:90%;max-width:1100px;margin-left:auto;margin-right:auto}
+.about-content{display:grid;grid-template-columns:1fr;gap:8px}
+
+/* Notes UI */
+.note-form{display:grid;gap:8px}
+.note-form textarea{width:100%;min-height:220px;padding:12px;border:1px solid rgba(0,0,0,.05);border-radius:10px;background:var(--white);outline:none;transition:box-shadow 200ms ease,border-color 200ms ease}
+.note-form textarea:focus{border-color:var(--warm-brown);box-shadow:0 0 0 3px rgba(193,140,84,.25)}
+.note-actions{display:flex;gap:8px}
+.notes-list{display:grid;gap:12px;margin-top:12px}
+.note-item{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;display:grid;grid-template-columns:1fr auto;gap:6px;align-items:start}
+.note-text{grid-column:1 / -1;white-space:pre-wrap}
+.note-meta{grid-column:1 / 2;color:#6b6b6b;font-size:.9rem}
+.note-item-actions{grid-column:2 / 3;display:flex;gap:8px;justify-self:end}
+
+/* Simple modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);max-width:min(800px,95vw);width:100%;padding:16px;display:grid;gap:10px}
+.modal-header{display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-weight:700}
+.modal-close{border:none;border-radius:10px;background:#f3f3f3;cursor:pointer;padding:6px 10px}
+.modal-content{white-space:pre-wrap}
+.modal-meta{color:#6b6b6b;font-size:.9rem}
